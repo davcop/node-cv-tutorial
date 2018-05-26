@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const Experience = new mongoose.Schema({
-    titolo: { type: String, required: true},
+    mansione: { type: String, required: true},
     azienda: { type: String, required: true},
     descrizione: { type: String, required: true},
     periodo:  { type: String, required: true}  
