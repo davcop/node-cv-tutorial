@@ -4,7 +4,7 @@ import { apirouter } from './routers/api-router'
 import bodyParser from 'body-Parser'
 import mongoose from 'mongoose'
 
-const port = 80;
+const port = process.env.PORT || 80;
 const dburl = process.env.MONGODB_URI || 'mongodb://davcop:123456789@ds219130.mlab.com:19130/mycurriculum';
 
 const app = express();
