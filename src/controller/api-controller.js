@@ -9,7 +9,7 @@ export function showListExperience(req,res) {
     //SELECT titolo, descrizione FROM experience
     Docexp.find({}, 'mansione azienda descrizione periodo status', (err,listaexp)=>{
         if(err) {
-            res.status(400).json({"error": err})
+            res.status(400).json({"msg": err, "error": 1})
         }
         res.json(listaexp);
     })
@@ -19,15 +19,16 @@ export function showListExperience(req,res) {
 
 export function addExperience(req,res) {
 const newexp = new Docexp({
-    titolo: req.body.titolo,
+    mansione: req.body.mansione,
     azienda: req.body.azienda,
     descrizione: req.body.descrizione,
-    periodo: req.body.periodo
+    periodo: req.body.periodo,
+    status : req.body.status
 })
 
 newexp.save((err,exp)=>{
     if (err) {
-        res.status(400).json({"error":err})
+        res.status(400).json({"msg": err, "error": 1})
     }
     res.json(exp);
 })
@@ -38,7 +39,7 @@ newexp.save((err,exp)=>{
 
 export function showExperience(req,res) {
      //SELECT titolo, descrizione FROM experience WHERE id=923834784
-    Docexp.findOne({_id: req.params.id}, 'titolo descrizione', (err,exp)=>{
+    Docexp.findOne({_id: req.params.id}, 'mansione azienda descrizione periodo status', (err,exp)=>{
         if(err) {
             res.status(400).json({"msg": err, "error": 1})
         }
@@ -48,8 +49,22 @@ export function showExperience(req,res) {
     //Docexp.find().limit().sort().select().exec()
 }
 export function updateExperience(req,res) {
-
-}
+    // UPDATE tabella SET col=valore WHERE _id=
+    const id = req.body.id;
+    const utente = {
+      mansione: req.body.mansione,
+      azienda: req.body.azienda,
+      descrizione: req.body.descrizione,
+      periodo: req.body.periodo,
+      status: req.body.status
+    }
+    Docexp.update({_id: id}, utente, (err,okobj)=>{
+      if(err) {
+          res.status(400).json({"msg": err, "error": 1})
+      }
+      res.json(okobj);
+    })
+  }
 
 // Cancello experienza
 
