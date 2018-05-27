@@ -1,7 +1,7 @@
 import express from 'express'
 import path from 'path'
 import { apirouter } from './routers/api-router'
-import bodyParser from 'body-Parser'
+import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 
 const port = process.env.PORT || 80;
