@@ -7,7 +7,7 @@ import Docexp from '../model/experience'
 
 export function showListExperience(req,res) {
     //SELECT titolo, descrizione FROM experience
-    Docexp.find({}, 'titolo descrizione', (err,listaexp)=>{
+    Docexp.find({}, 'mansione azienda descrizione periodo status', (err,listaexp)=>{
         if(err) {
             res.status(400).json({"error": err})
         }
