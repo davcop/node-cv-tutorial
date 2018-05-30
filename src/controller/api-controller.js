@@ -77,3 +77,14 @@ export function deleteExperience(req,res) {
         res.json({"msg":"Cancellazione avvenuta con successo", "error": 1});
     })
 }
+
+
+export function showListEducation(req,res) {
+    //SELECT titolo, descrizione FROM experience
+    Docexp.find({}, 'scuola qualifica descrizione periodo votazione', (err,listaedu)=>{
+        if(err) {
+            res.status(400).json({"msg": err, "error": 1})
+        }
+        res.json(listaedu);
+    })
+}
