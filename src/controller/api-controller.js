@@ -2,6 +2,7 @@
 // import path from 'path'
 
 import Docexp from '../model/experience'
+import Docedu from '../model/education'
 
 // Mostro la lista delle esperienze
 
@@ -81,7 +82,7 @@ export function deleteExperience(req,res) {
 
 export function showListEducation(req,res) {
     //SELECT titolo, descrizione FROM experience
-    Docexp.find({}, 'scuola qualifica descrizione periodo votazione', (err,listaedu)=>{
+    Docedu.find({}, 'scuola qualifica descrizione periodo votazione', (err,listaedu)=>{
         if(err) {
             res.status(400).json({"msg": err, "error": 1})
         }
