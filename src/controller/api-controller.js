@@ -51,13 +51,13 @@ export function showExperience(req,res) {
 }
 export function updateExperience(req,res) {
     // UPDATE tabella SET col=valore WHERE _id=
-    const id = req.body.id;
+    const id = req.body._id;
     const utente = {
       mansione: req.body.mansione,
       azienda: req.body.azienda,
       descrizione: req.body.descrizione,
       periodo: req.body.periodo,
-      status: req.body.status
+      status: req.body.stato
     }
     Docexp.update({_id: id}, utente, (err,okobj)=>{
       if(err) {
