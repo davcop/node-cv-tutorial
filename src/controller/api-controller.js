@@ -63,7 +63,13 @@ export function updateExperience(req,res) {
       if(err) {
           res.status(400).json({"msg": err, "error": 1})
       }
-      res.json(okobj);
+      if(okobj.nModified) {
+        res.json(utente);
+      } else {
+        res.json(okobj);  
+      }
+      
+      
     })
   }
 
