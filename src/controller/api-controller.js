@@ -66,7 +66,7 @@ export function updateExperience(req,res) {
       if(okobj['nModified']) {
         res.json(utente);
       } else {
-        res.json(okobj);  
+        res.json(utente);  
       }
       
       
