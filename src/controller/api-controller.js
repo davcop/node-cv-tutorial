@@ -81,7 +81,7 @@ export function deleteExperience(req,res) {
         if(err) {
             res.status(400).json({"error": err})
         }
-        res.json({"msg":"Cancellazione avvenuta con successo", "error": 1});
+        res.json({"msg":"Cancellazione avvenuta con successo", "error": 0});
     })
 }
 
