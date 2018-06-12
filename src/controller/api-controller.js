@@ -77,9 +77,9 @@ export function updateExperience(req,res) {
 
 export function deleteExperience(req,res) {
     // DELETE * FROM tabella WHERE id=
-      Docexp.remove({_id: req.params.id}, (err)=>{
+      Docexp.remove({_id: req.body._id}, (err)=>{
         if(err) {
-            res.status(400).json({"error": err})
+            res.status(400).json({"msg": err, "error": 1})
         }
         res.json({"msg":"Cancellazione avvenuta con successo", "error": 0});
     })

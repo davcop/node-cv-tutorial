@@ -10,7 +10,7 @@ apirouter.get('/experience', cv.showListExperience)
 apirouter.post('/experience/add', cv.addExperience)
 apirouter.get('/experience/:id/show', cv.showExperience)
 apirouter.post('/experience/up', cv.updateExperience)
-apirouter.get('/experience/:id/delete', cv.deleteExperience)
+apirouter.post('/experience/delete', cv.deleteExperience)
 
 apirouter.get('/education/', cv.showListEducation)
 
