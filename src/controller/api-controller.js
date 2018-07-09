@@ -18,7 +18,7 @@ export function checkAuthLogin(req,res) {
   if (req.body.username=='demo' && req.body.password=='demo') {
     res.json(jwt);
   } else  {
-    res.status(400).json({"msg": err, "error": 1})
+    res.status(400).json({"msg": "Credenziali errate", "error": 1})
   }
 
 }
