@@ -4,6 +4,25 @@
 import Docexp from '../model/experience'
 import Docedu from '../model/education'
 
+
+export function checkAuthLogin(req,res) {
+  // CHIAVE SEGRETA: 123456789
+  let idtoken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5OSIsIm5hbWUiOiJEYXZpZGUiLCJpYXQiOjE1MTYyMzkwMjJ9.OhVFKX2rdFf_QlSgiMwcLalLUOUvpGfamH9qpboqv9U';
+  let expire = new Date().getTime() + 300*1000;
+
+  const jwt = {
+      idToken: idtoken,
+      scadenza: expire
+  };
+
+  if (req.body.username=='demo' && req.body.password=='demo') {
+    res.json(jwt);
+  } else  {
+    res.status(400).json({"msg": err, "error": 1})
+  }
+
+}
+
 // Mostro la lista delle esperienze
 
 export function showListExperience(req,res) {
