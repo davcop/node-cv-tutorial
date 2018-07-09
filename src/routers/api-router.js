@@ -15,7 +15,7 @@ apirouter.post('/experience/delete', cv.deleteExperience)
 apirouter.get('/education/', cv.showListEducation)
 
 // Autorizzazioni
-apirouter.post('/login/', cv.checkAuthLogin)
+apirouter.post('/auth/login/', cv.checkAuthLogin)
 
 export {apirouter}
 
