@@ -10,13 +10,19 @@ const apirouter = express.Router();
 // 1) npm install jsonwebtoken --save
 // 2) import jwt from 'jsonwebtoken';
 
-apirouter.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+
+// Modifiche per CORS
+// https://gist.github.com/cuppster/2344435
+apirouter.use(function(req, res, next) { 
+  // non può essere * quando si inviano le credenziali con Authorization
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
       //intercepts OPTIONS method
       if ('OPTIONS' === req.method) {
         //respond with 200
+        // Il valore predefinito della risposta è OK quindi potresti usare o 204 come codice "No content" 
+        // oppure res.send(200).('')
         res.send(200);
       }
       else {
