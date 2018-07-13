@@ -14,7 +14,15 @@ apirouter.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
+      //intercepts OPTIONS method
+      if ('OPTIONS' === req.method) {
+        //respond with 200
+        res.send(200);
+      }
+      else {
+      //move on
+        next();
+      }
 });
 
 // Experience
