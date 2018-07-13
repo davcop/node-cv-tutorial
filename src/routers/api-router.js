@@ -30,8 +30,10 @@ apirouter.use(function(req, res, next) {
     // check header or url parameters or post parameters for token
     //var token = req.body.token || req.query.token || req.headers['x-access-token'];
     let token = '';
+    token = req.headers.authorization;
     if (req.headers.authorization) {
       token = req.headers.authorization.split(' ')[1]; // Bearer TOKEN
+      token = req.headers.authorization; // Bearer TOKEN
     }
     if (token) {
         // verifies secret and checks exp
@@ -51,7 +53,7 @@ apirouter.use(function(req, res, next) {
         // return an error
         return res.status(403).send({ 
             success: false, 
-            message: 'No token provided.' 
+            message: 'No token provided.' + token 
         });
     
       }
