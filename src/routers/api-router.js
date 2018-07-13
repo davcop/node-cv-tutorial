@@ -54,7 +54,7 @@ apirouter.use(function(req, res, next) {
         // verifies secret and checks exp
         jwt.verify(token, '123456789', function(err, payload) {      
           if (err) {
-            return res.json({ "success": false, "message": 'Autenticazione fallita per il Token', "error": 1 });    
+            return res.json({ "success": false, "message": 'Autenticazione fallita per il Token' + token , "error": 1 });    
           } else {
             // if everything is good, save to request for use in other routes
             req.body.payload = payload;    
