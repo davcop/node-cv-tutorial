@@ -11,6 +11,14 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+// aggiungo autorizzazione per bypassare CORS
+//
+
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+});
+
 app.use('/api', apirouter)
 
 mongoose.connect(dburl).then(
