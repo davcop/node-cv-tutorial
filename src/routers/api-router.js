@@ -13,6 +13,7 @@ const apirouter = express.Router();
 // Experience
 
 apirouter.get('/experience', cv.showListExperience)
+apirouter.get('/experience-auth', cv.showListExperience)
 apirouter.get('/education/', cv.showListEducation)
 apirouter.post('/auth/login/', cv.checkAuthLogin)
 apirouter.post('/experience/add', cv.addExperience)
