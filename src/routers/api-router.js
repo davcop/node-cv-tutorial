@@ -36,6 +36,7 @@ apirouter.use(function(req, res, next) {
 apirouter.get('/experience', cv.showListExperience)
 apirouter.get('/experience-auth', cv.showListExperience)
 apirouter.get('/education/', cv.showListEducation)
+apirouter.get('/education/:id/show', cv.showEducation)
 apirouter.post('/auth/login/', cv.checkAuthLogin)
 apirouter.post('/experience/add', cv.addExperience)
 apirouter.get('/experience/:id/show', cv.showExperience)

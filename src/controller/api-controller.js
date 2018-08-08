@@ -297,3 +297,20 @@ export function showListEducation(req, res) {
         res.json(listaedu);
     })
 }
+
+export function showEducation(req, res) {
+    //SELECT titolo, descrizione FROM experience WHERE id=923834784
+    Docedu.findOne({
+        _id: req.params.id
+    }, 'scuola qualifica descrizione periodo votazione', (err, exp) => {
+        if (err) {
+            res.status(400).json({
+                "msg": err,
+                "error": 1
+            })
+        }
+        res.json(exp);
+    })
+
+    //Docexp.find().limit().sort().select().exec()
+}
