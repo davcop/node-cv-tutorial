@@ -1,18 +1,17 @@
 import express from 'express'
-import path from 'path'
 import { apirouter } from './routers/api-router'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+
+dotenv.config();
 
 const port = process.env.PORT || 80;
-const dburl = process.env.MONGODB_URI || 'mongodb://davcop:A123456789@ds219130.mlab.com:19130/mycurriculum';
+const dburl = process.env.MONGODB_URI || process.env.MONGO_DB_STRING_CONNECTION;
 
 const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
-
-// aggiungo autorizzazione per bypassare CORS
-//
 
 app.use('/api', apirouter)
 
@@ -22,5 +21,5 @@ mongoose.connect(dburl).then(
 )
 
 app.listen(port, () => {
-    console.log('Applicazione in ascolto')
+    console.log('Applicazione in ascolto');
 })

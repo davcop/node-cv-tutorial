@@ -1,13 +1,8 @@
-// import express from 'express'
-// import path from 'path'
-
 import Docexp from '../model/experience'
 import Docedu from '../model/education'
 
-
 export function checkAuthLogin(req, res) {
-    // CHIAVE SEGRETA: 123456789
-    let idtoken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJDVkFQUCIsInVpZCI6Ijk5OSIsIm5hbWUiOiJEYXZpZGUgQ29wZWxsaSIsImlhdCI6MTUxNjIzOTAyMn0.-HWHh1kPHo639rDKQAZas_gS4Gs6pGpsTPfBOg3Jx8A';
+    let idtoken = process.env.API_TOKEN;
     let expire = new Date().getTime() + 300 * 1000;
 
     const jwt = {
@@ -29,7 +24,6 @@ export function checkAuthLogin(req, res) {
 // Mostro la lista delle esperienze
 
 export function showListExperience(req, res) {
-    //SELECT titolo, descrizione FROM experience
     Docexp.find({}, 'mansione azienda descrizione periodo status', (err, listaexp) => {
         if (err) {
             res.status(400).json({
@@ -103,7 +97,6 @@ export function addExperience(req, res) {
 // Mostro singola esperienza
 
 export function showExperience(req, res) {
-    //SELECT titolo, descrizione FROM experience WHERE id=923834784
     Docexp.findOne({
         _id: req.params.id
     }, 'mansione azienda descrizione periodo status', (err, exp) => {
@@ -123,7 +116,6 @@ export function showExperienceAuth(req, res) {
 
     if (req.body.payload) {
         if (req.body.payload['uid'] == "999") {
-            //SELECT titolo, descrizione FROM experience WHERE id=923834784
             Docexp.findOne({
                 _id: req.params.id
             }, 'mansione azienda descrizione periodo status', (err, exp) => {
@@ -150,11 +142,7 @@ export function showExperienceAuth(req, res) {
 
 }
 
-//Docexp.find().limit().sort().select().exec()
-
-
 export function updateExperience(req, res) {
-    // UPDATE tabella SET col=valore WHERE _id=
     const id = req.body._id;
     const utente = {
         mansione: req.body.mansione,
@@ -183,7 +171,6 @@ export function updateExperience(req, res) {
 }
 
 export function updateExperienceAuth(req, res) {
-    // UPDATE tabella SET col=valore WHERE _id=
     const id = req.body._id;
     const utente = {
         mansione: req.body.mansione,
@@ -228,11 +215,9 @@ res.status(400).json({
 
 }
 
-
 // Cancello experienza
 
 export function deleteExperience(req, res) {
-    // DELETE * FROM tabella WHERE id=
     Docexp.remove({
         _id: req.body._id
     }, (err) => {
@@ -286,7 +271,6 @@ res.status(400).json({
 
 
 export function showListEducation(req, res) {
-    //SELECT titolo, descrizione FROM experience
     Docedu.find({}, 'scuola qualifica descrizione periodo votazione', (err, listaedu) => {
         if (err) {
             res.status(400).json({
@@ -299,7 +283,6 @@ export function showListEducation(req, res) {
 }
 
 export function showEducation(req, res) {
-    //SELECT titolo, descrizione FROM experience WHERE id=923834784
     Docedu.findOne({
         _id: req.params.id
     }, 'scuola qualifica descrizione periodo votazione', (err, exp) => {
@@ -311,6 +294,4 @@ export function showEducation(req, res) {
         }
         res.json(exp);
     })
-
-    //Docexp.find().limit().sort().select().exec()
 }
