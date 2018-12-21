@@ -5,7 +5,7 @@ import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 
 const port = process.env.PORT || 80;
-const dburl = process.env.MONGODB_URI || 'mongodb://davcop:123456789@ds219130.mlab.com:19130/mycurriculum';
+const dburl = process.env.MONGODB_URI || 'mongodb://davcop:A123456789@ds219130.mlab.com:19130/mycurriculum';
 
 const app = express();
 
